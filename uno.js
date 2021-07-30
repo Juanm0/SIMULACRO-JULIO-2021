@@ -27,11 +27,11 @@ function mostrar()
 	var acumuladorSSDM2;
 
 	contadorProductos=0;
-	contadorProductos=parseInt(contadorProductos);
+	
 	acumuladorHDD=0;
-	acumuladorHDD=parseInt(acumuladorHDD);
+	
 	acumuladorSSD=0;
-	acumuladorSSD=parseInt(acumuladorSSD);
+	
 
 	while (contadorProductos<5)
 	{
@@ -42,15 +42,17 @@ function mostrar()
 		}
 		precioDeProducto=prompt("Ingrese el precio de su "+tipoDeProducto);
 		precioDeProducto=parseInt(precioDeProducto);
-		while(isNaN(precioDeProducto)&&precioDeProducto<5000&&precioDeProducto>18000)
+		while(isNaN(precioDeProducto)||precioDeProducto<5000||precioDeProducto>18000)
 		{
 			precioDeProducto=prompt("Error.. Ingrese un precio valido (entre 5000 y 18000)");
+			precioDeProducto=parseInt(precioDeProducto);
 		}
 		cantidadDeUnidades=prompt("¿Cuantas unidades de su "+tipoDeProducto+" desea ordenar?");
 		cantidadDeUnidades=parseInt(cantidadDeUnidades);
 		while(isNaN(cantidadDeUnidades)&&cantidadDeUnidades<1&&cantidadDeUnidades>50)
 		{
 			cantidadDeUnidades=prompt("Error.. Ingrese una cantidad valida. Solo disponemos de 50 unidades para su producto");
+			cantidadDeUnidades=parseInt(cantidadDeUnidades);
 		}
 		marcaDeProducto=prompt("Ingrese la marca de su "+tipoDeProducto);
 		while(marcaDeProducto!="Seagate"&&marcaDeProducto!="Western Digital"&&marcaDeProducto!="Kingston")
