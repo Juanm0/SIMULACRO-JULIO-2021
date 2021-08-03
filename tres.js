@@ -14,6 +14,10 @@ c) La cantidad de personas de género No Binario que recibieron AstraZeneca u Ot
 d) Cuántas personas que se aplicaron la vacuna AstraZeneca, presentaron una temperatura mayor a 38°.
 e) El promedio de edad de los hombres que se aplicaron la vacuna 
 SputnikV y no presentaron fiebre. (37° o menos)
+f) Porcentaje de personas que se aplicaron Aztrazeneca
+g) Cual fue la vacuna mas aplicada
+h) Promedio de edad de las personas que se dieron cada vacuna
+i) Que porcentaje de personas de cada genero hay. Ej: 30% Femenino, 60% Masculino y 10% No Binario
 */
 
 function mostrar()
@@ -28,9 +32,21 @@ function mostrar()
 	let banderaTemperaturaMayor;
 	let personaMayorTemperatura;
 	let vacunaMayorTemperatura;
+	let contadorFemeninoSPV;
+	let contadorNBaZuOtro;
+	let contadorFiebreAZ;
+	let acumuladorMSkNoFiebre;//acumulador masculino sputnik no fiebre
+	let contadorMSkNoFiebre;//contador masculino sputnik no fiebre
+	let contadorAstraZeneca;
 
 	IngresarDatos=true;
 	banderaTemperaturaMayor=true;
+	contadorFemeninoSPV=0;
+	contadorNBaZuOtro=0;
+	contadorFiebreAZ=0;
+	acumuladorMSkNoFiebre=0;
+	contadorMSkNoFiebre=0;
+	contadorAstraZeneca=0;
 	while(IngresarDatos==true)
 	{
 		nombreIngresado=prompt("INGRESE SU NOMBRE");
@@ -60,6 +76,10 @@ function mostrar()
 		{
 			temperaturaIngresada=prompt("Error..Ingrese una temperatura valida");
 		}
+		if(vacunaIngresada=="AstraZeneca")
+		{
+			contadorAstraZeneca++;
+		}
 		if(temperaturaIngresada>temperaturaMayor||banderaTemperaturaMayor==true)
 		{
 			temperaturaMayor=temperaturaIngresada;
@@ -67,7 +87,46 @@ function mostrar()
 			vacunaMayorTemperatura=vacunaIngresada;
 			banderaTemperaturaMayor=false;
 		}
+		switch(generoIngresado)
+		{
+			case "Femenino":
+			if(vacunaIngresada=="SputnikV")
+			{
+				contadorFemeninoSPV++;
+			}
+			break;
+
+			case "NB":
+			if(vacunaIngresada=="AstraZeneca"||vacunaIngresada=="Otro")
+			{
+				contadorNBaZuOtro++;
+			}
+			break;
+
+			case "Masculino":
+			if(vacunaIngresada=="SputnikV"&&temperaturaIngresada<38)
+			{
+				acumuladorMSkNoFiebre+=edadIngresada;
+				contadorMSkNoFiebre++;
+			}
+
+		}
 		IngresarDatos=confirm("Ingresar datos de otra persona?");
 	}
+	document.write("El promedio de Hombres que tienen fiebre con la SputnikV es "+acumuladorMSkFiebre/contadorMSkFiebre);
 	document.write("Su nombre es "+nombreIngresado);
 }
+
+
+/*
+
+if(vacunaIngresada=="AstraZeneca")
+{
+	contadorAstraZeneca++;
+	if(temperaturaIngresada>38)
+	{
+		contadorFiebreAZ++;
+	}
+}
+//Mathi dijo que esta estructura está bien
+*/
